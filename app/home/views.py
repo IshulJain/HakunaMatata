@@ -10,6 +10,7 @@ def postAd(request):
 		return render(request, 'post.html')
 	elif request.method == 'POST':
 		post = request.POST
+		file = request.FILES
 		ad = Advertisment()
 
 		ad.user = request.user
@@ -17,9 +18,10 @@ def postAd(request):
 		ad.category = post.get('category')
 		ad.description = post.get('description')
 		ad.name = post.get('name')
+		ad.price = post.get('price')
 		ad.mobileNumber = post.get('number')
-		ad.hostel = post.get('hostel')
-		ad.room = post.get('room')
+		ad.address = post.get('address')
+		ad.image = request.FILES.get('image')
 
 		ad.save()
 

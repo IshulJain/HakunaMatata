@@ -14,8 +14,12 @@ class Advertisment(models.Model):
 	user = models.ForeignKey(User)
 	name = models.CharField(max_length=50)
 	title = models.CharField(max_length=100)
-	category = models.CharField(max_length=100)
+	image = models.FileField()
+	price = models.IntegerField()
+	category = models.CharField(max_length=100, null=True, blank=True)
 	description = models.CharField(max_length=500)
 	mobileNumber = models.BigIntegerField()
-	hostel = models.CharField(max_length=50)
-	room = models.CharField(max_length=50)
+	address = models.CharField(max_length=150)
+
+	def __str__(self):
+		return "%s - %s" % (self.title, self.name)

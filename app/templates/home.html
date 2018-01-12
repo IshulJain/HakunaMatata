@@ -404,6 +404,22 @@ window.onclick = function(event) {
 							<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
 						</div>
 
+						{% for a in ad %}
+						<div class="product-item women men">
+							<div class="product product_filter">
+								<div class="product_image">
+									<img src="/media/{{ a.image }}" alt="">
+								</div>
+								<div class="favorite"></div>
+								<div class="product_info">
+									<h6 class="product_name"><a href="single.html">{{ a.title }}</a></h6>
+									<div class="product_price">{{ a.price }}</div>
+								</div>
+							</div>
+							<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+						</div>
+						{% endfor %}
+
 						<!-- Product 6 -->
 
 						<div class="product-item accessories">

@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from home.models import *
+from home.views import *
+from home.urls import *
 
 # Create your views here.
 def landing(request):
@@ -57,7 +60,8 @@ def getUsername(email):
 
 def home(request):
     if request.user.is_authenticated():
-        return render(request,'home.html')
+    	ad = Advertisment.objects.all()
+        return render(request,'home.html', {'ad' : ad})
     else:
         return redirect("/login")  
 

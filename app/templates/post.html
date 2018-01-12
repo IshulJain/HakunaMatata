@@ -17,29 +17,33 @@
 <body>
 
   <!-- multistep form -->
-<form id="msform">
+<form id="msform" enctype="multipart/form-data" method="post" action={% url 'home:postAd' %}>
   <!-- progressbar -->
- 
+  {% csrf_token %}
   <!-- fieldsets -->
   <fieldset>
     <h2 class="fs-title">Post an Ad</h2>
-    <select>
+    <input type="text" name="title" placeholder="Title" />
+    <select name="category">
       <option value="" disabled selected>Select your category</option>
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
+      <option value="Vehicle" name="category">Vehicle</option>
+      <option value="Books" name="category">Books</option>
+      <option value="Electronics" name="category">Electronics</option>
+      <!-- <option value="audi">Audi</option> -->
     </select>
-    <input type="text" name="email" placeholder="Ad Description" />
+   <!--  <input type="text" name="email" placeholder="Ad Description" col=10 /> -->
+    <textarea name="description" placeholder="Description"></textarea>
     <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
-    <input type="file" />
+    <input type="file" name="image"/>
+    <input type="text" name="price" placeholder="Price" />
     <br>
     <br>
     <br>
     <br>
     <input type="text" name="name" placeholder="Name" />
-    <input type="text" name="mob" placeholder="Mobile number" />
-    <input type="textarea" name="address" placeholder="Address" />
+    <input type="text" name="number" maxlength="10" placeholder="Mobile number" />
+    <textarea name="address" placeholder="Address"></textarea>
+    <!-- <input type="textarea" name="address" placeholder="Address" /> -->
     <!-- <input type="button" name="next"  value="Next" /> -->
     <button type="submit" class="next action-button" form="msform" value="Submit">Submit</button>
   </fieldset>
