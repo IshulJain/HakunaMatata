@@ -16,8 +16,6 @@
 <link rel='stylesheet' href='/static/css/tingle.css' type="text/css" media='all'>
 <script src="/static/js/tingle.js"></script>
 
-
-
 <style>
 .dropbtn {
     /*background-color: #4CAF50;*/
@@ -26,10 +24,6 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
-}
-
-.product {
-	width :;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -73,25 +67,30 @@
 
 	<header class="header trans_300">
 
-		<!-- Top Navigation -->
-
-
-		<!-- Main Navigation -->
 
 		<div class="main_nav_container">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						<div class="logo_container">
-							<a href="/home">SKOO<span>DLE</span></a>
+							<a href="#">SKOO<span>DLE</span></a>
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
+								<!-- <li><a href="#">home</a></li>
+								<li><a href="#">shop</a></li>
+								<li><a href="#">promotion</a></li> -->
 								<li><div class="wrap">
+  <!--  <div class="search" style="margin-right: 30px;">
+      <input type="text"  class="searchTerm" size="25" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
+ -->
 
 
-
-  <form action={% url 'home:search' %} style="margin-right: 30px;" method="get">
+  <form action={% url 'home:search' %} style="margin-right: 30px;">
       <input type="text" placeholder="Search.." name="search" size="25">
       <button type="submit" style="width: 50px;"><i class="fa fa-search"></i></button>
     </form>
@@ -163,38 +162,27 @@ window.onclick = function(event) {
 			<div class="row">
 				<div class="col text-center">
 					<div class="section_title new_arrivals_title">
-						<h2>New Arrivals</h2>
 					</div>
 				</div>
 			</div>
-			<div class="row align-items-center">
-				<div class="col text-center">
-					<div class="new_arrivals_sorting">
-						<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".Books">Books</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".Electronics">Electronics</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".Vehicle">Vehicle</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+		
 			<div class="row">
 				<div class="col">
 					<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
 
+		
+			
 
-
-						{% for a in ad %}
-						<div class="product-item {{ a.category }}" style="margin:auto;">
+						{% for w in wishlist %}
+						<div class="product-item {{ w.category }}" style="margin:auto;">
 							<div class="product product_filter" >
 								<div class="product_image">
-									<a href="/media/{{ a.image }}" target="_blank"><img src="/media/{{ a.image }}" alt="" style="height:200px; width:;"></a>
+									<a href="/media/{{ w.image }}" target="_blank"><img src="/media/{{ w.image }}" alt="" style="height:200px; width:;"></a>
 								</div>
 							<!-- 	<div class="favorite"></div> -->
 								<div class="product_info">
-									<h6 class="product_name"><a href="">{{ a.title }}</a></h6>
-									<div class="product_price"><i class="fa fa-inr"></i> {{ a.price }}</div>
+									<h6 class="product_name"><a href="">{{ w.title }}</a></h6>
+									<div class="product_price"><i class="fa fa-inr"></i> {{ w.price }}</div>
 								</div>
 							</div>
 							<ul style="margin-left:;" class="arrivals_grid_sorting clearfix button-group filters-button-group">
@@ -207,16 +195,16 @@ window.onclick = function(event) {
 
                 		<div class="tingle-demo" style="display: none;" id="about{{forloop.counter}}">
                 			<h1 class="plop">Details</h1>
-								<div style="font-size: 20px;"><b>Title</b> : {{a.title}} </div>
-								<div style="font-size: 20px;"><b>Category</b> : {{a.category}} </div>
-								<div style="font-size: 20px;"><b>Price</b> : {{a.price}}/- </div>
-								<div style="font-size: 20px;"><b>Description</b> : {{a.description}} </div>
-								<img src="/media/{{a.image}}" height="200" width="300" alt="" />
-								<div style="font-size: 20px;"><b>Contact</b> : {{a.mobileNumber}}</div>
-								<div style="font-size: 20px;"><b>Address</b> : {{a.address}}</div>
+								<div style="font-size: 20px;"><b>Title</b> : {{w.title}} </div>
+								<div style="font-size: 20px;"><b>Category</b> : {{w.category}} </div>
+								<div style="font-size: 20px;"><b>Price</b> : {{w.price}}/- </div>
+								<div style="font-size: 20px;"><b>Description</b> : {{w.description}} </div>
+								<img src="/media/{{w.image}}" height="200" width="300" alt="" />
+								<div style="font-size: 20px;"><b>Contact</b> : {{w.mobileNumber}}</div>
+								<div style="font-size: 20px;"><b>Address</b> : {{w.address}}</div>
 							</div>	
             </li> 
-            <a href={% url 'home:wishlist' a.id %}>Wishlist</a>
+           <!--  <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center">Wishlist</li> -->
 						</ul>
 							<!-- <div class="red_button add_to_cart_button"><a href="#">add to Wishlist</a></div> -->
 						</div>
@@ -225,13 +213,14 @@ window.onclick = function(event) {
 
 						{% endfor %}
 
-						
+				
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	
 
 	<!-- Footer -->
 
@@ -251,13 +240,22 @@ window.onclick = function(event) {
 					<div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
 						<ul>
 							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<!-- <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li> -->
 							<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-						
+							<!-- <li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li> -->
 						</ul>
 					</div>
 				</div>
 			</div>
-	
+			<!-- <div class="row">
+				<div class="col-lg-12">
+					<div class="footer_nav_container">
+						<div class="cr">©2018 All Rights Reserverd. This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a></div>
+					</div>
+				</div>
+			</div>
+		</div> -->
 	</footer>
 
 </div>

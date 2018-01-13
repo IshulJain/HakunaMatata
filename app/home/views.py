@@ -6,6 +6,8 @@ from django.contrib import messages
 from .models import *
 from django.db.models import Q
 
+wishlist1 = []
+
 def postAd(request):
 	if request.method == 'GET':
 		return render(request, 'post.html')
@@ -43,3 +45,14 @@ def search(request):
 		result = Advertisment.objects.all()
 
 	return render(request, 'home.html', {'ad' : result})	
+
+
+def wishlist(request, ad_id):
+	
+	ad = Advertisment.objects.get(pk=ad_id)
+	if ad:
+		wishlist1.append(ad)
+	else :
+		pass
+
+	return render(request, 'wishlist.html', {'wishlist' : wishlist1} )
