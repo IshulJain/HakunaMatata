@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import *
+from django.db.models import Q
 
 def postAd(request):
 	if request.method == 'GET':
@@ -28,3 +29,17 @@ def postAd(request):
 		return HttpResponse("<h1>Ad posted Successfully!</h1>")
 
 
+
+def search(request):
+	query = request.GET.get('search', '')
+	if query:
+		qset = (
+				Q(title__icontains=query) |
+				Q(category__icontains=query) 
+
+			)
+		result = Advertisment.objects.filter(qset).distinct()
+	else:
+		result = []
+
+	return render(request, 'search.html', {'search' : result})	

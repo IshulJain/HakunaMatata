@@ -61,6 +61,7 @@ def getUsername(email):
 def home(request):
     if request.user.is_authenticated():
     	ad = Advertisment.objects.all()
+    	#ad = ad.reverse()
         return render(request,'home.html', {'ad' : ad})
     else:
         return redirect("/login")  

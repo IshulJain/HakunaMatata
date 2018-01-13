@@ -6,5 +6,6 @@ app_name = 'home'
 
 urlpatterns = [
 	url(r'^ad/$', postAd, name='postAd'),
+	url(r'^search/$', search, name='search'),
 	
 ]
