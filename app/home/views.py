@@ -40,6 +40,6 @@ def search(request):
 			)
 		result = Advertisment.objects.filter(qset).distinct()
 	else:
-		result = []
+		result = Advertisment.objects.all()
 
-	return render(request, 'search.html', {'search' : result})	
+	return render(request, 'home.html', {'ad' : result})	
