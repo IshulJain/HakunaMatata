@@ -73,7 +73,7 @@
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						<div class="logo_container">
-							<a href="#">SKOO<span>DLE</span></a>
+							<a href="{% url 'login:home' %}">SKOO<span>DLE</span></a>
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
@@ -162,6 +162,7 @@ window.onclick = function(event) {
 			<div class="row">
 				<div class="col text-center">
 					<div class="section_title new_arrivals_title">
+						<h2>Wishlist</h2>
 					</div>
 				</div>
 			</div>
@@ -203,7 +204,7 @@ window.onclick = function(event) {
 								<div style="font-size: 20px;"><b>Contact</b> : {{w.mobileNumber}}</div>
 								<div style="font-size: 20px;"><b>Address</b> : {{w.address}}</div>
 							</div>	
-            </li> 
+            </li>  <a href={% url 'home:remove' w.id %}>Remove</a>
            <!--  <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center">Wishlist</li> -->
 						</ul>
 							<!-- <div class="red_button add_to_cart_button"><a href="#">add to Wishlist</a></div> -->

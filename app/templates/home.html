@@ -208,12 +208,12 @@ window.onclick = function(event) {
                 		<div class="tingle-demo" style="display: none;" id="about{{forloop.counter}}">
                 			<h1 class="plop">Details</h1>
 								<div style="font-size: 20px;"><b>Title</b> : {{a.title}} </div>
-								<div style="font-size: 20px;"><b>Category</b> : {{a.category}} </div>
-								<div style="font-size: 20px;"><b>Price</b> : {{a.price}}/- </div>
-								<div style="font-size: 20px;"><b>Description</b> : {{a.description}} </div>
-								<img src="/media/{{a.image}}" height="200" width="300" alt="" />
-								<div style="font-size: 20px;"><b>Contact</b> : {{a.mobileNumber}}</div>
-								<div style="font-size: 20px;"><b>Address</b> : {{a.address}}</div>
+								<div style="font-size: 20px; margin-top: 20px;"><b>Category</b> : {{a.category}} </div>
+								<div style="font-size: 20px; margin-top: 20px;"><b>Price</b> : {{a.price}}/- </div>
+								<div style="font-size: 20px; margin-top: 20px;"><b>Description</b> : {{a.description}} </div>
+								<img src="/media/{{a.image}}" height="200" width="300" alt="" style=" margin-top: 20px;" />
+								<div style="font-size: 20px; margin-top: 20px;"><b>Contact</b> : {{a.mobileNumber}}</div>
+								<div style="font-size: 20px; margin-top: 20px;"><b>Address</b> : {{a.address}}</div>
 							</div>	
             </li> 
             <a href={% url 'home:wishlist' a.id %}>Wishlist</a>

@@ -56,3 +56,18 @@ def wishlist(request, ad_id):
 		pass
 
 	return render(request, 'wishlist.html', {'wishlist' : wishlist1} )
+
+
+
+
+def myWish(request):
+	return render(request, 'wishlist.html', {'wishlist' : wishlist1})
+
+
+def remove(request, rm_id):
+	ad = Advertisment.objects.get(pk=rm_id)	
+	try:
+		wishlist1.remove(ad)
+	except:
+		pass
+	return render(request, 'wishlist.html', {'wishlist' : wishlist1})	

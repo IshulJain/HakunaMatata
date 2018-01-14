@@ -8,5 +8,7 @@ urlpatterns = [
 	url(r'^ad/$', postAd, name='postAd'),
 	url(r'^search/$', search, name='search'),
 	url(r'^wishlist/(?P<ad_id>[0-9]+)/$', wishlist, name='wishlist'),
+	url(r'^remove/(?P<rm_id>[0-9]+)/$', remove, name='remove'),
+	url(r'^myWish/$', myWish, name='myWish'),
 	
 ]
