@@ -71,3 +71,17 @@ def remove(request, rm_id):
 	except:
 		pass
 	return render(request, 'wishlist.html', {'wishlist' : wishlist1})	
+
+
+
+def myad(request):
+	u = request.user
+	ad = Advertisment.objects.filter(user=u)
+
+	return render(request, 'myad.html', {'myad' : ad})	
+
+
+def deleteAd(request, dl_id):
+	ad = Advertisment.objects.get(pk=dl_id)
+	ad.delete()
+	return redirect('/home')
