@@ -12,5 +12,7 @@ urlpatterns = [
 	url(r'^delete/(?P<dl_id>[0-9]+)/$', deleteAd, name='deleteAd'),
 	url(r'^myWish/$', myWish, name='myWish'),
 	url(r'^myad/$', myad, name='myad'),
+	url(r'^buyRequest/(?P<user_id>[-\w]+)/(?P<pr_id>[0-9]+)/$', buyRequest, name='buyRequest'),
+
 	
 ]

@@ -23,3 +23,11 @@ class Advertisment(models.Model):
 
 	def __str__(self):
 		return "%s - %s" % (self.title, self.name)
+
+
+class Notification(models.Model):
+	not_user = models.ForeignKey(User, on_delete=models.CASCADE)
+	notification = models.CharField(max_length=800)
+
+	def __str__(self):
+		return "%s - %s" % (self.not_user.username, self.notification)

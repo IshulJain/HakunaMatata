@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import *
 from django.db.models import Q
+from django.http import JsonResponse
 
 wishlist1 = []
 
@@ -28,7 +29,7 @@ def postAd(request):
 
 		ad.save()
 
-		return HttpResponse("<h1>Ad posted Successfully!</h1>")
+		return redirect('/home')
 
 
 
@@ -85,3 +86,22 @@ def deleteAd(request, dl_id):
 	ad = Advertisment.objects.get(pk=dl_id)
 	ad.delete()
 	return redirect('/home')
+
+
+def buyRequest(request, user_id, pr_id):
+	response = {}
+	buyer = user_id
+	print buyer
+	ad = Advertisment.objects.get(pk=pr_id)
+	seller = ad.user.username
+	print seller
+	response["buyer"] = buyer
+	response["seller"]=seller
+	response["product_id"] = pr_id
+	#return redirect('/home')
+	n = Notification()
+	n.not_user = ad.user
+	hola = "%s want to buy %s" % (buyer, ad.title)
+	n.notification = hola
+	n.save()
+	return JsonResponse(response)

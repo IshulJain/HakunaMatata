@@ -35,7 +35,10 @@ def registerView(request):
     	user = User.objects.create_user(username=username, email=email)
     	user.set_password(password1)
     	user.save()
-    	return render(request,'home.html')
+    	user.backend = 'django.contrib.auth.backends.ModelBackend'
+    	login(request, user)
+    	return redirect('/home')
+		
 
 def loginView(request):
 	if request.method == 'POST':
@@ -48,6 +51,7 @@ def loginView(request):
 
 		if user is not None:
 			login(request, user)
+			print user
 			return redirect('/home')
 
 
@@ -61,8 +65,9 @@ def getUsername(email):
 def home(request):
     if request.user.is_authenticated():
     	ad = Advertisment.objects.all()
+    	no = Notification.objects.filter(not_user=request.user)
     	#ad = ad.reverse()
-        return render(request,'home.html', {'ad' : ad})
+        return render(request,'home.html', {'ad' : ad, 'notify':no})
     else:
         return redirect("/login")  
 
